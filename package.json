@@ -4,7 +4,7 @@
   "description": "Scribd codemod",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "shift": "jscodeshift"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ericyang321/scribd_mod.git"
   },
-  "homepage": "https://github.com/ericyang321/scribd_mod#readme"
+  "homepage": "https://github.com/ericyang321/scribd_mod#readme",
+  "dependencies": {
+    "jscodeshift": "0.3.32"
+  }
 }
