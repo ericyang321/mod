@@ -1,5 +1,5 @@
 {
-  "name": "mod",
+  "name": "scribd_codemod",
   "version": "1.0.0",
   "description": "Scribd codemod",
   "main": "src/index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ericyang321/mod.git"
+    "url": "git+https://github.com/ericyang321/scribd_mod.git"
   },
   "author": "Eric Yang <ericyang321@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ericyang321/mod/issues"
+    "url": "https://github.com/ericyang321/scribd_mod.git"
   },
-  "homepage": "https://github.com/ericyang321/mod#readme"
+  "homepage": "https://github.com/ericyang321/scribd_mod#readme"
 }
