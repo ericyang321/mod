@@ -1,3 +1,1 @@
-Scribd Codemod
-
-* WIP
+Modifying code with jscodeshift
