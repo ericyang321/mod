@@ -15,7 +15,7 @@ function getStaticPropTypesDeclaration(j) {
   return scribdComponent =>
     scribdComponent.find(j.ClassProperty, {
       static: true,
-      key: { name: 'propTypes' }
+      key: { name: 'propTypes' },
     });
 }
 
@@ -34,7 +34,7 @@ function assembleComponentMemberExp(j) {
 }
 
 // main
-function transform(file, api) {
+function propTypesTransform(file, api) {
   const j = api.jscodeshift;
   const astRoot = j(file.source);
 
@@ -59,4 +59,4 @@ function transform(file, api) {
   return astRoot.toSource();
 }
 
-module.exports = transform;
+module.exports = propTypesTransform;

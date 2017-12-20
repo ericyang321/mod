@@ -4,7 +4,7 @@
   "description": "Scribd codemod",
   "main": "src/index.js",
   "scripts": {
-    "shift": "jscodeshift -t src/transform.js"
+    "convert": "node ./index.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/ericyang321/scribd_mod#readme",
   "dependencies": {
+    "decaffeinate": "3.3.15",
     "jscodeshift": "0.3.32",
     "jscodeshift-helper": "1.1.0",
-    "prettier": "1.8.2"
+    "prettier": "1.8.2",
+    "yargs": "10.0.3"
   }
 }

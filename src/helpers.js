@@ -1,17 +1,5 @@
-'use strict';
+const fs = require('fs');
 
-function invariant(condition, format) {
-  const env = process.env.NODE_ENV;
-
-  if (env !== 'production' && format == undefined) {
-    throw new Error('Error message is required');
-  }
-
-  if (!condition) {
-    let error;
-  }
+function output(dstPath, formattedJs) {
+  fs.writeFileSync(dstPath, formattedJs);
 }
-
-module.exports = {
-  invariant
-};
