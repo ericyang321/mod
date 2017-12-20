@@ -4,20 +4,29 @@ const path = require('path');
 
 const transformPropTypes = require('./src/transformPropTypes');
 const prettierFormat = require('./src/prettierFormat');
-const decaffinator = require('./src/decaffinator');
+const decaffinate = require('./src/decaffinator');
+const { output } = require('./src/helpers')
 
-function convertToDestPath(sourcePath, destPath) {
+function convertToDestPath(sourcePath) {
   const pathObj = path.parse(sourcePath);
   return pathObj.dir + '/' + pathObj.name + '.jsx';
 }
 
-function convertSourceFile(sourcePath) {}
+function convertSourceFile(sourceFile) {
+  const decaffinatedJs = decaffinate(sourceFile);
+  const prettyJs = prettierFormat(decaffinatedJs);
+
+  return prettyJs;
+}
 
 function executeConversion(sourcePath) {
-  const destPath = convertToDestPath(sourcePath);
-  const formattedJs = convertSourceFile(sourcePath, destPath);
+  if (!sourcePath) return;
+  const sourceFile = fs.readFileSync(sourcePath).toString();
 
-  fs.writeFileSync(destPath, formattedJs);
+  const destPath = convertToDestPath(sourcePath);
+  const formattedJs = convertSourceFile(sourceFile);
+
+  output(destPath, formattedJs);
 }
 
 const cliArgs = yargs
@@ -27,6 +36,4 @@ const cliArgs = yargs
 
 const srcPath = cliArgs._[0];
 
-if (srcPath) {
-  executeConversion(srcPath);
-}
+executeConversion(srcPath);

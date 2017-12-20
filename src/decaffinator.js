@@ -1,8 +1,12 @@
 const fs = require('fs');
+const { convert } = require('decaffeinate');
 
-function decaff(sourcePath) {
-  const sourceCoffee = fs.readFileSync(sourcePath).toString();
-
+function decaffinate(sourceFile) {
+  return convert(sourceFile, {
+    preferLet: false,
+    useJSModules: true,
+    looseJSModules: true,
+  }).code;
 }
 
-module.exports = decaff;
+module.exports = decaffinate;

@@ -1,7 +1,7 @@
 const prettier = require('prettier');
 
-function formatPrettier(sourcePath) {
-  const sourceJs = fs.readFileSync(sourcePath).toString();
+function prettierFormat(sourceFile) {
+  const sourceJs = sourceFile.toString();
   const opts = {
     semi: false,
     trailingComma: 'es5',
@@ -9,7 +9,7 @@ function formatPrettier(sourcePath) {
     singleQuote: true,
   };
 
-  prettier.format(sourceJs, opts);
+  return prettier.format(sourceJs, opts);
 }
 
-module.exports = formatPrettier;
+module.exports = prettierFormat;
