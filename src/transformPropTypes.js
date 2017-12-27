@@ -1,5 +1,5 @@
 // helper
-function findScribdComponent(j, astRoot) {
+function findcomponent(j, astRoot) {
   return astRoot.find(j.ClassDeclaration);
 }
 
@@ -12,15 +12,15 @@ function rightValue(n) {
 }
 
 function getStaticPropTypesDeclaration(j) {
-  return scribdComponent =>
-    scribdComponent.find(j.ClassProperty, {
+  return component =>
+    component.find(j.ClassProperty, {
       static: true,
       key: { name: 'propTypes' },
     });
 }
 
-function findComponentName(scribdComponent) {
-  return scribdComponent.get('id').node.name;
+function findComponentName(component) {
+  return component.get('id').node.name;
 }
 
 function assemblePropTypesAssignment(j) {
@@ -38,14 +38,14 @@ function propTypesTransform(file, api) {
   const j = api.jscodeshift;
   const astRoot = j(file.source);
 
-  const scribdComponent = findScribdComponent(j, astRoot);
-  const componentName = findComponentName(scribdComponent);
+  const component = findcomponent(j, astRoot);
+  const componentName = findComponentName(component);
 
   const componentNameDotPropTypes = assembleComponentMemberExp(j)(
     componentName
   );
   const propTypesObject = rightValue(
-    getStaticPropTypesDeclaration(j)(scribdComponent)
+    getStaticPropTypesDeclaration(j)(component)
   );
 
   const finalPropTypeDeclaration = assemblePropTypesAssignment(j)(
@@ -53,8 +53,8 @@ function propTypesTransform(file, api) {
     propTypesObject
   );
 
-  scribdComponent.insertAfter(finalPropTypeDeclaration);
-  removeOld(getStaticPropTypesDeclaration(j)(scribdComponent));
+  component.insertAfter(finalPropTypeDeclaration);
+  removeOld(getStaticPropTypesDeclaration(j)(component));
 
   return astRoot.toSource();
 }
